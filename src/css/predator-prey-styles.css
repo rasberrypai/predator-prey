@@ -1,0 +1,95 @@
+#predator-prey-flex-box  {
+  display: flex;
+  justify-content: center;
+}
+#predator-prey-container {
+  width: 75%;
+}
+#predator-prey-nav {
+  display: flex;
+  background-color: #f3f3f3;
+}
+#predator-prey-nav-buttons {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+}
+.predator-prey-nav-button {
+  width: 6rem;
+  font-size: 1rem;
+  padding: 3px 6px;
+  color: #666;
+  text-align: center;
+  background: none;
+  border:0;
+}
+.predator-prey-nav-button:hover {
+  background: #ddd;
+}
+
+#predator-prey-canvas {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 15px;
+}
+#predator-prey-settings {
+  list-style-type: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+  margin: 0;
+}
+#visible-points {
+  margin: 0;
+  border: 1px solid #e7e7e7;
+  font-size: 1rem;
+  background-color: #f3f3f3;
+}
+.predator-prey-number-picker{
+  margin: 0;
+  border: 1px solid #e7e7e7;
+  font-size: 1rem;
+  background-color: #f3f3f3;
+}
+#predator-prey-ui{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+#predator-prey-ui-buttons{
+  list-style-type: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: 0;
+  margin-bottom: 15px;
+}
+.predator-prey-ui-button{
+  width: 5rem;
+  font-size: 1rem;
+  padding: 6px 12px;
+  text-align: center;
+  background: #f3f3f3;
+  border: 1px solid #e7e7e7;
+}
+.predator-prey-ui-button:hover {
+  background: #ddd;
+}
+#predator-prey-sliders{
+  list-style-type: none;
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: 0;
+}
+@media only screen and (max-width: 768px){
+  #predator-prey-container {
+   width: 90%;
+  }
+  #predator-prey-sliders{
+    display: block;
+  }
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./css/predator-prey-styles.css">
+    <link rel="stylesheet" href="./css/web-styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
+  </head>
+
+  <body>
+
+    <!--top bar-->
+    <header class="site-header">
+      <div class="wrapper">
+        <a class="site-title" rel="author" href="./index.html">Ajay Pai</a>
+      </div>
+    </header>
+
+    <main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <article class="post">
+
+          <header class="post-header">
+            <h1 class="post-title">Predator-Prey</h1>
+            <p class="post-meta">September 12, 2020</p>
+          </header>
+          <div class="post-content">
+            <div id="predator-prey-flex-box">
+              <div id="predator-prey-container">
+                <div id="predator-prey-nav">
+                  <ul id="predator-prey-nav-buttons">
+                    <li><button class="predator-prey-nav-button" id="simulation-button" onclick="SimulationSwitch()" style="color: white; background: #008CBA;">Simulation</button></li>
+                    <li><button class="predator-prey-nav-button" id="graph-button" onclick="GraphSwitch()">Graph</button></li>
+                    <li><button class="predator-prey-nav-button" id="settings-button" onclick="SettingsSwitch()">Settings</button></li>
+                  </ul>
+                </div>
+                <div id="predator-prey-canvas">
+                  <ul id="predator-prey-settings" style="display:none;">
+                    <li>
+                      <label for="graph-zoom">Graph Auto Zoom:</label>
+                      <input type="checkbox" checked="checked" id="graph-zoom" onchange="SetAutoZoom()">
+                    </li>
+                    <li>
+                      <label for="visible-points">Visible Data Points:</label>
+                      <select id="visible-points" onchange="ChangeVisiblePoints()">
+                        <option value="0">All</option>
+                        <option value="500">500</option>
+                        <option value="250">250</option>
+                        <option value="100">100</option>
+                      </select>
+                    </li>
+                    <li>
+                      <label for="predator-spawn-rate">Predator Spawn Rate:</label>
+                      <input type="number" min="1" max="100" value="20" class="predator-prey-number-picker" id="predator-spawn-rate" onchange="ChangePredatorSpawnRate()"> %
+                    </li>
+                    <li>
+                      <label for="prey-spawn-rate">Prey Spawn Rate:</label>
+                      <input type="number" min="1" max="100" value="20" class="predator-prey-number-picker" id="prey-spawn-rate" onchange="ChangePreySpawnRate()"> %
+                    </li>
+                    <li>
+                      <label for="predator-hunger">Predator Hunger:</label>
+                      <input type="number" min="1" max="100" value="15" class="predator-prey-number-picker" id="predator-hunger" onchange="ChangePredatorHunger()"> %
+                    </li>
+                    <li>
+                      <label for="predator-competition">Predator Competition:</label>
+                      <input type="number" min="0" max="100" value="5" class="predator-prey-number-picker" id="predator-competition" onchange="ChangePredatorCompetition()"> %
+                    </li>
+                    <li>
+                      <label for="prey-nutrition">Prey Nutrition:</label>
+                      <input type="number" min="1" max="100" value="10" class="predator-prey-number-picker" id="prey-nutrition" onchange="ChangePreyNutrition()"> %
+                    </li>
+                    <li>
+                      <label for="prey-reproduction-rate">Prey Reproduction Rate:</label>
+                      <input type="number" min="1" max="100" value="20" class="predator-prey-number-picker" id="prey-reproduction-rate" onchange="ChangePreyReproduction()"> %
+                    </li>
+                    <li>
+                      <label for="prey-run-penalty">Prey Run Penalty:</label>
+                      <input type="number" min="1" max="100" value="10" class="predator-prey-number-picker" id="prey-run-penalty" onchange="ChangePreyRunPenalty()"> %
+                    </li>
+                  </ul>
+                </div>
+                <div id="predator-prey-ui"</div>
+                  <ul id="predator-prey-ui-buttons">
+                    <li><button class="predator-prey-ui-button" onclick="Play()" style="margin-right: 5px">Play</button></li>
+                    <li><button class="predator-prey-ui-button" onclick="Pause()" style="margin-right: 5px">Pause</button></li>
+                    <li><button class="predator-prey-ui-button" onclick="Reset()">Reset</button></li>
+                  </ul>
+                  <ul id="predator-prey-sliders">
+                    <li>
+                      <label for="size-slider">Size:</label>
+                      <input type="range" min="-26" max="-4" value="-15" class="predator-prey-slider" id="size-slider" onchange="ChangeSize()" style="margin-right: 5px">
+                    </li>
+                    <li>
+                      <label for="speed-slider">Speed:</label>
+                      <input type="range" min="1" max="31" value="16" class="predator-prey-slider" id="speed-slider" onchange="ChangeSpeed()">
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </article>
+      </div>
+    </main>
+
+    <footer class="site-footer h-card">
+      <div class="wrapper">
+        <div class="footer-col-wrapper">
+
+          <div class="footer-col">
+            <ul class="contact-list">
+                <li class="p-name">Ajay Pai</li>
+                <li><a class="u-email" href="mailto:ajay.rohan.pai@gmail.com">ajay.rohan.pai@gmail.com</a></li>
+            </ul>
+          </div>
+
+          <div class="footer-col">
+            <p></p>
+          </div>
+        </div>
+
+        <div class="social-links">
+          <ul class="social-list">
+            <li class="social-icon"><a rel="me" href="https://github.com/rasberrypai" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></a></li>
+            <li class="social-icon"><a rel="me" href="https://www.linkedin.com/in/ajay-pai-974201189/" target="_blank"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/></svg></a></li>
+          </ul>
+        </div>
+
+      </div>
+    </footer>
+    <script src="js/predator-prey.js"></script>
+    <script src="js/simulation.js"></script>
+    <script src="js/graph.js"></script>
+    <script src="js/sketch.js"></script>
+  </body>
+</html>

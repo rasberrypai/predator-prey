@@ -1,10 +1,10 @@
 const PreyBaseHealth = 0;
-const PreyReproductionThreshold = 10;
-const PreyRunPenalty = -1;
-const PreyHealthDerivative = 2;
-const PredatorBaseHealth = 20;
-const PredatorHealthDerivative = -3;
-const PredatorCompetitionPenalty = -1;
+let PreyReproductionThreshold = 5;
+let PreyRunPenalty = -0.5;
+let PreyHealthDerivative = 1;
+const PredatorBaseHealth = 10;
+let PredatorHealthDerivative = -1.5;
+let PredatorCompetitionPenalty = -0.5;
 
 class Prey {
   constructor(x,y,updateTurn) {
@@ -74,9 +74,32 @@ class Predator {
   }
 }
 class Empty {
+  update(x, y) {
 
+  }
 }
 
 function inBounds(x,y){
   return y > -1 && x > -1 && y < grid.length && x < grid[y].length;
+}
+
+function ChangePredatorHunger(){
+    let percentage = parseInt(document.getElementById("predator-hunger").value)/100;
+    PredatorHealthDerivative = PredatorBaseHealth * percentage * -1;
+}
+function ChangePredatorCompetition(){
+    let percentage = parseInt(document.getElementById("predator-competition").value)/100;
+    PredatorCompetitionPenalty = PredatorBaseHealth * percentage * -1;
+}
+function ChangePreyNutrition(){
+  let percentage = parseInt(document.getElementById("predator-nutrition").value)/100;
+  PreyHealthDerivative = PredatorBaseHealth * percentage;
+}
+function ChangePreyReproduction(){
+  let percentage = parseInt(document.getElementById("prey-reproduction-rate").value)/100;
+  PreyReproductionThreshold = PreyHealthDerivative / percentage;
+}
+function ChangePreyRunPenalty(){
+  let percentage = parseInt(document.getElementById("prey-run-penalty").value)/100;
+  PreyRunPenalty = PreyReproductionThreshold * percentage * -1;
 }
